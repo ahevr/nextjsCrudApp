@@ -1,6 +1,18 @@
 import Head from 'next/head'
+import { BiUserPlus } from 'react-icons/bi';
+import Table from '../components/table';
+import Form from '../components/form';
+import { useState } from 'react';
 
 export default function Home() {
+
+
+  const[visible,setVisible] = useState(false)
+  const handler = () => {
+    setVisible(visible ? false:true)
+  }
+
+
   return (
     <div> 
       <Head>
@@ -10,12 +22,28 @@ export default function Home() {
       </Head>
 
       <main className='py-5'>
-      <h1 className='text-xl md:text-5xl text-center font-bold py-10'>Müşteri Yönetimii</h1>
-        <div className='container mx-auto flex justify-between py-5 border-b'>
+      <h1 className='text-xl md:text-5xl text-center font-bold py-10'>Müşteri Yönetimi</h1>
+        <div className='container mx-auto flex justify-between py-5'>
           <div className='left flex gap-3'>
-
+            <button onClick={handler} className='flex items-center bg-violet-500 text-white px-4 py-2 border rounded-xl hover:bg-grary-50 hover:border-violet-500'>
+              <span className='mx-1'> <BiUserPlus size={23}></BiUserPlus> </span>     Müşteri Ekle
+            </button>
           </div>
         </div>
+
+
+
+        <div className='container mx-auto py-5'>
+          {visible ? <Form></Form> :<></> }
+        </div>
+        
+
+
+         <div className='container mx-auto'>
+         <Table></Table>
+         </div>
+
+
       </main>
     </div>
   )
